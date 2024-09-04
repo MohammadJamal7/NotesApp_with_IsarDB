@@ -55,7 +55,7 @@ class NotesDbService extends ChangeNotifier {
     return currentNotes;
   }
    
- Set<int> _checkedNoteIds = {};
+ final Set<int> _checkedNoteIds = {};
    // Toggle the checked state of a note
   void toggleNoteChecked(int id) {
     if (_checkedNoteIds.contains(id)) {

@@ -22,58 +22,57 @@ class MyTile extends StatelessWidget {
     bool isChecked = notesDbService.isNoteChecked(noteId);
 
     return Container(
-      
       padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(12),
-        color: const Color.fromARGB(255, 33, 20, 20),
-      ),
+          border: Border.all(),
+          borderRadius: BorderRadius.circular(12),
+          color: Theme.of(context).primaryColor),
       child: ListTile(
         title: Flexible(
           child: RichText(
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
             text: TextSpan(
+              
               text: text,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
-                color: Colors.white,
+                color: Theme.of(context).primaryColorLight,
                 decoration: isChecked
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,
-                decorationColor: isChecked ? Colors.white : Colors.transparent,
+                decorationColor: Theme.of(context).primaryColorLight,
                 decorationThickness: 2, // Adjust thickness as needed
               ),
             ),
           ),
         ),
-        leading:  Checkbox(
-             
-              value: isChecked,
-              onChanged: (bool? value) {
-                if (value != null) {
-                  notesDbService.toggleNoteChecked(noteId);
-                }
-              },
-            ),
+        leading: Checkbox(
+          value: isChecked,
+          onChanged: (bool? value) {
+            if (value != null) {
+              notesDbService.toggleNoteChecked(noteId);
+            }
+          },
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
                 onPressed: editingFun,
-                icon: const Icon(
+                icon: Icon(
                   Icons.edit,
-                  color: Color.fromARGB(255, 241, 208, 208),
+                  color: Theme.of(context).primaryColorLight,
                 )),
             IconButton(
               onPressed: deletingfun,
-              icon: const Icon(
+              icon: Icon(
                 Icons.delete,
-                color: Color.fromARGB(255, 241, 208, 208),
+                color: Theme.of(context).primaryColorLight,
               ),
             ),
-           
           ],
         ),
       ),
